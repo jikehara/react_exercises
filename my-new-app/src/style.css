@@ -1,0 +1,37 @@
+.app-container {
+  margin: 10px;
+  background-color: #cbd8c9;
+}
+
+.nav {
+  background-color: #4477c9;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.nav-item-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-item-container > li {
+  font-size: 24px;
+  list-style: none;
+}
+
+.my-jumbotron {
+  border: solid 2px #4477c9;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  background-color: #7cc174;
+}
+
+.section {
+  border: solid 2px #4477c9;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+}

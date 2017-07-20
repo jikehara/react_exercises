@@ -1,39 +1,12 @@
 import React from 'react';
+import NavBar from './NavBar';
+import MyJumbotron from './MyJumbotron';
+import Section from './Section';
 // import ReactDOM from 'react-dom';
 
-const NavBar = (props) => {
-  return (
-    <nav className='nav'>
-      <ul className='nav-item-container'>
-        {
-          props.navLinks.map(function(item) {
-            return <li>{item}</li>
-          })
-        }
-      </ul>
-    </nav>
-  )
-}
 
-const MyJumbotron = (props) => {
-  return (
-    <div className="my-jumbotron">
-      <h3>{props.header}</h3>
-      <p>Thanks, react</p>
-    </div>
-  )
-}
 
-const Section = (props) => {
-  return (
-    <div className="section" role="presentation">
-      <h1>{props.header}</h1>
-      <p>{props.paragraph}</p>
-    </div>
-  )
-}
-
-const WebApp = () => {
+const App = () => {
   return (
     <div className='app-container'>
 
@@ -48,4 +21,4 @@ const WebApp = () => {
 
 
 
-export default WebApp;
+export default App;

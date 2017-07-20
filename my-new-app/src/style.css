@@ -13,12 +13,13 @@
 .nav-item-container {
   display: flex;
   justify-content: space-around;
-  align-content: space-around;
+  padding: 0;
 }
 
 .nav-item-container > li {
   font-size: 24px;
   list-style: none;
+  margin: 0;
 }
 
 .my-jumbotron {

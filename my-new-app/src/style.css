@@ -46,3 +46,15 @@
 .chat-container > div {
   width: 33.333%;
 }
+
+.app-navbar {
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.app-navbar > li {
+  font-size: 24px;
+  list-style: none;
+  margin: 0;
+}

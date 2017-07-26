@@ -6,6 +6,7 @@ import App from './WebApp/App';
 import ChatApp from './Chatter/ChatApp';
 import ChatData from './Chatter/Data';
 import ACME_App from './ACME_React/ACME_App';
+import PlaygroundApp from './Playground/PlaygroundApp';
 import './style.css';
 // Our router should navigate to home, ChatApp, numbermap, webapp
 
@@ -17,7 +18,6 @@ const Home = () => {
   )
 }
 
-
 ReactDOM.render((
   <Router>
     <div>
@@ -27,6 +27,7 @@ ReactDOM.render((
       <Route path='/WebApp' component={App} />
       <Route path='/ChatApp' component={ChatApp} />
       <Route path='/ACME_App' component={ACME_App} />
+      <Route path='/PlaygroundApp' component={PlaygroundApp} />
 
     </div>
   </Router>

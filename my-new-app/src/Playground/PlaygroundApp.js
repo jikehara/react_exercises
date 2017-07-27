@@ -33,6 +33,7 @@ const UsersList = (props) => {
 // smart component
 class PlaygroundApp extends React.Component {
 
+  // this has to be "state"
   state = {
     name: "Joseph",
     counter: 0,

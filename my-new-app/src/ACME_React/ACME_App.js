@@ -6,7 +6,7 @@ const ACME_App = () => {
 
   const MappedNames = Data.customers.map(function(customer, index) {
     return (
-      <div key={index}>
+      <div key={index} className="acme-customers">
         <h3>{customer.name}</h3>
         <p>{customer.email}</p>
         <img src={customer.img} alt="dummy alt text" />

@@ -1,4 +1,5 @@
 import React from 'react';
+import Faker from 'faker';
 
 // SMART/Container/STATE Data, no props
 
@@ -30,6 +31,16 @@ const UsersList = (props) => {
   )
 }
 
+const Counter = (props) => {
+  return (
+    <div>
+      <h3>Counter: { props.counter }</h3>
+      <button onClick={()=> props.increaseCounter()}>Increase Counter</button>
+      <button onClick={()=> props.decreaseCounter()}>Decrease Counter</button>
+    </div>
+  )
+}
+
 // smart component
 class PlaygroundApp extends React.Component {
 
@@ -37,11 +48,19 @@ class PlaygroundApp extends React.Component {
   state = {
     name: "Joseph",
     counter: 0,
-    users: null
+    users: null,
+    showCounter: true
   };
+
+  // increaseCounter = this.increaseCounter.bind(this);
+  // decreaseCounter = this.decreaseCounter.bind(this);
 
   componentDidMount() {
     this.fetchUsersFromServer();
+    console.log("Mounting app!");
+    const randomName=Faker.name.firstName();
+    const someproduct = Faker.commerce.product();
+    console.log(someproduct);
   }
 
   fetchUsersFromServer() {
@@ -58,27 +77,43 @@ class PlaygroundApp extends React.Component {
     }, 3000);
   }
 
-  increaseCounter() {
+  // = () => {} does binding automatically
+  increaseCounter = () => {
     this.setState({counter: this.state.counter += 1})
   }
 
-  decreaseCounter() {
+  decreaseCounter = () => {
     this.setState({counter: this.state.counter -= 1})
+  }
+
+  toggleCounter = () => {
+    this.setState({showCounter: !this.state.showCounter})
   }
 
   render() {
     return (
       <div>
         <h1>{this.state.name}</h1>
-        <h3>Counter: {this.state.counter}</h3>
-        <button onClick={()=> this.increaseCounter()}>Increase Counter</button>
-        <button onClick={()=> this.decreaseCounter()}>Decrease Counter</button>
+        <button className={
+          this.state.showCounter ? "open-btn" : "close-btn"
+        }
+
+          onClick={()=> this.toggleCounter()}> {this.state.showCounter ? "Close counter" : "Open Counter"}
+        </button>
+
+        {
+          this.state.showCounter
+          ? <Counter counter={this.state.counter}
+            increaseCounter={this.increaseCounter}
+            decreaseCounter={this.decreaseCounter} />
+          : null
+        }
+
         {
           this.state.users
           ? <UsersList usersData={this.state.users}/>
           : <h1> Users loading </h1>
         }
-
       </div>
     )
   }

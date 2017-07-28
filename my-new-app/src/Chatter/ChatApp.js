@@ -2,7 +2,6 @@ import React from 'react';
 import Data from './Data'
 
 const ChatApp = () => {
-  console.log(Data.chats);
 
   const MappedUsernames = Data.chats.map(function(chat, index) {
     return (

@@ -7,12 +7,13 @@ import ChatApp from './Chatter/ChatApp';
 import ChatData from './Chatter/Data';
 import ACME_App from './ACME_React/ACME_App';
 import PlaygroundApp from './Playground/PlaygroundApp';
+import 'bootstrap/dist/css/bootstrap.css';
 import './style.css';
 // Our router should navigate to home, ChatApp, numbermap, webapp
 
 const Home = () => {
   return (
-    <div>
+    <div className="jumbotron">
       <h3>Hello from Home</h3>
     </div>
   )

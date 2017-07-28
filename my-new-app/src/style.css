@@ -72,3 +72,23 @@
   border-radius: 15px;
   font-size: 24px;
 }
+
+.user-card-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: calc(100%-20px);
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid blue;
+  width: calc(50% - 2em);
+  margin: 1em;
+  padding: 10px;
+}
+
+.user-card img {
+  max-width: 90%;
+}

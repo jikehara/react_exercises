@@ -1,52 +1,21 @@
 import React from 'react';
 import Faker from 'faker';
+import Counter from './Counter';
+import UsersList from './UsersList';
 
 // SMART/Container/STATE Data, no props
 
 // DUMB/Presentational/Returns html/no state Data, only props
 
 
-// // dumb component
-// const PlaygroundApp = (props) => {
-//
-//
-//   return (
-//     <div>
-//       <h1>Hello from playground</h1>
-//     </div>
-//   )
-// }
-
-const UsersList = (props) => {
-  return (
-    <div>
-      <h1> Found user list: </h1>
-
-      <ul>
-        {
-          props.usersData.map((user, index) => <li key={index}>{user.name}</li>)
-        }
-      </ul>
-    </div>
-  )
-}
-
-const Counter = (props) => {
-  return (
-    <div>
-      <h3>Counter: { props.counter }</h3>
-      <button onClick={()=> props.increaseCounter()}>Increase Counter</button>
-      <button onClick={()=> props.decreaseCounter()}>Decrease Counter</button>
-    </div>
-  )
-}
-
 // smart component
 class PlaygroundApp extends React.Component {
 
   // this has to be "state"
   state = {
-    name: "Joseph",
+    firstName: null,
+    lastName: null,
+    img: null,
     counter: 0,
     users: null,
     showCounter: true
@@ -57,24 +26,22 @@ class PlaygroundApp extends React.Component {
 
   componentDidMount() {
     this.fetchUsersFromServer();
-    console.log("Mounting app!");
-    const randomName=Faker.name.firstName();
-    const someproduct = Faker.commerce.product();
-    console.log(someproduct);
   }
 
-  fetchUsersFromServer() {
-    // pretend it's an ajax function
-    const users = [
-      {name: "Doug", id:1},
-      {name: "Sean", id:2},
-      {name: "Karsten", id:3},
-      {name: "Emily", id:4}
-    ]
-
-    setTimeout(() => {
-      this.setState({ users })
-    }, 3000);
+// all created functions will be = () =>
+  fetchUsersFromServer = () => {
+    // temp array to hold people
+    // loop to create person and push into temp array
+    // set state of users to temp array
+    const peopleArray = [];
+    for (let i=0; i<20; i+=1) {
+      peopleArray.push({
+        firstName: Faker.name.firstName(),
+        lastName: Faker.name.lastName(),
+        img: Faker.random.image()
+      });
+    }
+    this.setState({users: peopleArray})
   }
 
   // = () => {} does binding automatically
@@ -90,15 +57,43 @@ class PlaygroundApp extends React.Component {
     this.setState({showCounter: !this.state.showCounter})
   }
 
+  updateFirstName = (event) => this.setState({firstName: event.target.value})
+
+  updateLastName = (event) => this.setState({lastName: event.target.value})
+
+  updateImg = (event) => this.setState({img: event.target.value})
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    const person = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      img: this.state.img
+    }
+    let peopleArray = this.state.users;
+    peopleArray.push(person);
+    this.setState({users: peopleArray})
+  }
+
   render() {
     return (
       <div>
-        <h1>{this.state.name}</h1>
-        <button className={
-          this.state.showCounter ? "open-btn" : "close-btn"
+        <form onSubmit={this.handleFormSubmit}>
+        <input onChange={this.updateFirstName} />
+        <input onChange={this.updateLastName} />
+        <input onChange={this.updateImg} />
+        <button type="submit" >SUBMIT</button>
+        </form>
+
+        {
+          this.state.users
+          ? <UsersList usersData={this.state.users}/>
+          : <h1> Users loading </h1>
         }
 
-          onClick={()=> this.toggleCounter()}> {this.state.showCounter ? "Close counter" : "Open Counter"}
+        <button className={
+          this.state.showCounter ? "open-btn" : "close-btn"
+        } onClick={()=> this.toggleCounter()}> {this.state.showCounter ? "Close counter" : "Open Counter"}
         </button>
 
         {
@@ -109,16 +104,10 @@ class PlaygroundApp extends React.Component {
           : null
         }
 
-        {
-          this.state.users
-          ? <UsersList usersData={this.state.users}/>
-          : <h1> Users loading </h1>
-        }
+
       </div>
     )
   }
 }
-
-
 
 export default PlaygroundApp;
